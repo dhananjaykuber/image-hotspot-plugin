@@ -4,12 +4,19 @@ return array(
 	'image-hotspot' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'create-block/image-hotspot',
+		'name' => 'hotspot/image-hotspot',
 		'version' => '0.1.0',
 		'title' => 'Image Hotspot',
 		'category' => 'widgets',
-		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'icon' => 'marker',
+		'description' => 'Make your images interactive by adding clickable hotspots with tooltips, links, and rich content.',
+		'keywords' => array(
+			'hotspot',
+			'image',
+			'interactive',
+			'tooltip',
+			'marker'
+		),
 		'example' => array(
 			
 		),

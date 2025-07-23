@@ -1,1 +1,1 @@
-{"version":3,"file":"image-hotspot/index.css","mappings":";;;AAAA;EACC;AACD,C","sources":["webpack://image-hotspot/./src/image-hotspot/editor.scss"],"sourcesContent":[".wp-block-create-block-image-hotspot {\n\tborder: 1px dotted #f00;\n}\n"],"names":[],"sourceRoot":""}
+{"version":3,"file":"image-hotspot/index.css","mappings":";;;AAAA;EACC;AACD,C","sources":["webpack://image-hotspot/./src/image-hotspot/editor.scss"],"sourcesContent":[".wp-block-hotspot-image-hotspot {\n\tborder: 1px dotted #f00;\n}\n"],"names":[],"sourceRoot":""}
