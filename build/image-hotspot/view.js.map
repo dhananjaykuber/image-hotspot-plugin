@@ -1,0 +1,1 @@
+{"version":3,"file":"image-hotspot/view.js","mappings":";;;;AAAAA,OAAO,CAACC,GAAG,CAAC,sDAAsD,CAAC,C","sources":["webpack://image-hotspot/./src/image-hotspot/view.js"],"sourcesContent":["console.log(\"Hello World! (from create-block-image-hotspot block)\");\n"],"names":["console","log"],"sourceRoot":""}
