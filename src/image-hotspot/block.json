@@ -8,6 +8,107 @@
 	"icon": "marker",
 	"description": "Make your images interactive by adding clickable hotspots with tooltips, links, and rich content.",
 	"keywords": ["hotspot", "image", "interactive", "tooltip", "marker"],
+	"attributes": {
+		"image": {
+			"type": "object",
+			"properties": {
+				"url": {
+					"type": "string",
+					"default": ""
+				},
+				"id": {
+					"type": "string",
+					"default": ""
+				}
+			},
+			"default": {
+				"url": "",
+				"id": ""
+			}
+		},
+		"imageDescription": {
+			"type": "string",
+			"default": ""
+		},
+		"hotspots": {
+			"type": "array",
+			"default": [],
+			"items": {
+				"type": "object",
+				"properties": {
+					"index": {
+						"type": "number",
+						"default": 0
+					},
+					"icon": {
+						"type": "string",
+						"default": ""
+					},
+					"title": {
+						"type": "string",
+						"default": ""
+					},
+					"showTitle": {
+						"type": "boolean",
+						"default": true
+					},
+					"description": {
+						"type": "string",
+						"default": ""
+					},
+					"link": {
+						"type": "string",
+						"default": ""
+					},
+					"enableAnimation": {
+						"type": "boolean",
+						"default": true
+					},
+					"customColors": {
+						"type": "boolean",
+						"default": false
+					},
+					"backgroundColor": {
+						"type": "string",
+						"default": "#000000"
+					},
+					"titleColor": {
+						"type": "string",
+						"default": "#ffffff"
+					},
+					"tooltipColor": {
+						"type": "string",
+						"default": "#ffffff"
+					},
+					"tooltipTextColor": {
+						"type": "string",
+						"default": "#000000"
+					},
+					"videoURL": {
+						"type": "string",
+						"default": ""
+					},
+					"position": {
+						"type": "object",
+						"properties": {
+							"x": {
+								"type": "number",
+								"default": 0
+							},
+							"y": {
+								"type": "number",
+								"default": 0
+							}
+						},
+						"default": {
+							"x": 0,
+							"y": 0
+						}
+					}
+				}
+			}
+		}
+	},
 	"example": {},
 	"supports": {
 		"html": false
