@@ -5,4 +5,21 @@
   border: 1px dotted #f00;
 }
 
+.wp-image-color-palette {
+  margin-bottom: 16px;
+}
+.wp-image-color-palette .wp-image-color-item {
+  position: relative;
+}
+.wp-image-color-palette .wp-image-color {
+  border: 1px solid rgba(0, 0, 0, 0.1411764706);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  transition: 0.2s all ease-in-out;
+}
+.wp-image-color-palette .wp-image-color:hover {
+  transform: scale(1.1);
+}
+
 /*# sourceMappingURL=index.css.map*/
