@@ -2,6 +2,78 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/components/color-control.js":
+/*!*****************************************!*\
+  !*** ./src/components/color-control.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ColorControl)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _color_palette__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./color-palette */ "./src/components/color-palette.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+/**
+ * WordPress dependencies
+ */
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+function ColorControl({
+  hotspots,
+  setAttributes,
+  index
+}) {
+  const handleColorChange = (field, value) => {
+    const updatedHotspots = [...hotspots];
+    updatedHotspots[index] = {
+      ...updatedHotspots[index],
+      [field]: value
+    };
+    setAttributes({
+      hotspots: updatedHotspots
+    });
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: hotspots[index].customColors && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_color_palette__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Background Color", "image-hotspot"),
+        field: "backgroundColor",
+        onClick: handleColorChange,
+        selectedColor: hotspots[index].backgroundColor
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_color_palette__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Title Color", "image-hotspot"),
+        field: "titleColor",
+        onClick: handleColorChange,
+        selectedColor: hotspots[index].titleColor
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_color_palette__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Tooltip Color", "image-hotspot"),
+        field: "tooltipColor",
+        onClick: handleColorChange,
+        selectedColor: hotspots[index].tooltipColor
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_color_palette__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Tooltip Text Color", "image-hotspot"),
+        field: "tooltipTextColor",
+        onClick: handleColorChange,
+        selectedColor: hotspots[index].tooltipTextColor
+      })]
+    })
+  });
+}
+
+/***/ }),
+
 /***/ "./src/components/color-palette.js":
 /*!*****************************************!*\
   !*** ./src/components/color-palette.js ***!
@@ -14,8 +86,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
@@ -29,23 +101,27 @@ __webpack_require__.r(__webpack_exports__);
 
 function ColorPalette({
   label,
-  setAttributes
+  field,
+  onClick,
+  selectedColor
 }) {
-  const colorPalette = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useSetting)("color.palette");
+  const colorPalette = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_1__.select)("core/block-editor").getSettings().colors;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
     label: label || (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Select Color", "image-hotspot"),
+    __nextHasNoMarginBottom: true,
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Flex, {
-      gap: 2,
+      gap: 1,
       wrap: true,
       justify: "flex-start",
       className: "wp-image-color-palette",
       children: colorPalette.map((color, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, {
-        className: "wp-image-color-item",
+        className: `wp-image-color-item ${selectedColor === color.color ? "is-selected" : ""}`,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
           className: "wp-image-color",
           style: {
             backgroundColor: color.color
-          }
+          },
+          onClick: () => onClick(field, color.color)
         })
       }, index))
     })
@@ -68,7 +144,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _color_palette__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./color-palette */ "./src/components/color-palette.js");
+/* harmony import */ var _color_control__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./color-control */ "./src/components/color-control.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
 /**
@@ -77,39 +153,90 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+/**
+ * Internal dependencies
+ */
+
 
 function HotspotList({
   hotspots,
   setAttributes
 }) {
+  // Handle value change for each hotspot
+  const handleValueChange = (index, field, value) => {
+    const updatedHotspots = [...hotspots];
+    updatedHotspots[index] = {
+      ...updatedHotspots[index],
+      [field]: value
+    };
+    setAttributes({
+      hotspots: updatedHotspots
+    });
+  };
+
+  // Handle removing a hotspot
+  const handleRemoveHotspot = index => {
+    const updatedHotspots = [...hotspots];
+    updatedHotspots.splice(index, 1);
+    setAttributes({
+      hotspots: updatedHotspots
+    });
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Flex, {
     direction: "column",
     gap: 2,
     children: [hotspots.map((hotspot, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexBlock, {
+        className: "wp-image-hotspot-inspector",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Title", "image-hotspot")
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Title", "image-hotspot"),
+          value: hotspot.title,
+          onChange: value => handleValueChange(index, "title", value),
+          __next40pxDefaultSize: true,
+          __nextHasNoMarginBottom: true
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Show Title", "image-hotspot")
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Show Title", "image-hotspot"),
+          checked: hotspot.showTitle,
+          onChange: value => handleValueChange(index, "showTitle", value),
+          __nextHasNoMarginBottom: true
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Description", "image-hotspot")
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Description", "image-hotspot"),
+          value: hotspot.description,
+          onChange: value => handleValueChange(index, "description", value),
+          __next40pxDefaultSize: true,
+          __nextHasNoMarginBottom: true
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Link", "image-hotspot")
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Link", "image-hotspot"),
+          value: hotspot.link,
+          onChange: value => handleValueChange(index, "link", value),
+          __next40pxDefaultSize: true,
+          __nextHasNoMarginBottom: true
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Animation", "image-hotspot")
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Animation", "image-hotspot"),
+          checked: hotspot.enableAnimation,
+          onChange: value => handleValueChange(index, "enableAnimation", value),
+          __nextHasNoMarginBottom: true
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToggleControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Custom Color", "image-hotspot")
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_color_palette__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Background Color", "image-hotspot")
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_color_palette__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Title Color", "image-hotspot")
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_color_palette__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Tooltip Color", "image-hotspot")
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_color_palette__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Tooltip Text Color", "image-hotspot")
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Custom Color", "image-hotspot"),
+          checked: hotspot.customColors,
+          onChange: value => handleValueChange(index, "customColors", value),
+          __nextHasNoMarginBottom: true
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_color_control__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          hotspots: hotspots,
+          setAttributes: setAttributes,
+          index: index
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Video URL", "image-hotspot"),
-          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Embed video from YouTube", "image-hotspot")
+          value: hotspot.videoURL,
+          onChange: value => handleValueChange(index, "videoURL", value),
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Embed video from YouTube", "image-hotspot"),
+          __next40pxDefaultSize: true,
+          __nextHasNoMarginBottom: true
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+          variant: "primary",
+          isDestructive: true,
+          onClick: () => handleRemoveHotspot(index),
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Remove Hotspot", "image-hotspot")
         })]
       })
     }, index)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.FlexItem, {
@@ -127,6 +254,71 @@ function HotspotList({
         children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Add Hotspot", "image-hotspot")
       })
     })]
+  });
+}
+
+/***/ }),
+
+/***/ "./src/components/hotspot.js":
+/*!***********************************!*\
+  !*** ./src/components/hotspot.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Hotspot)
+/* harmony export */ });
+/* harmony import */ var _utils_constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/constants */ "./src/utils/constants.js");
+/* harmony import */ var _utils_helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/helper */ "./src/utils/helper.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+/**
+ * Internal dependencies
+ */
+
+
+
+function Hotspot({
+  hotspot
+}) {
+  const animate = hotspot.enableAnimation || true;
+  const embedURL = (0,_utils_helper__WEBPACK_IMPORTED_MODULE_1__.getYoutubeEmbedURL)(hotspot.videoURL);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "imagehotspot",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "imagehotspot__container",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+        className: `imagehotspot__hotspot ${animate && "is-animated"}`,
+        style: {
+          "--image-hotspot-color": hotspot.backgroundColor || _utils_constants__WEBPACK_IMPORTED_MODULE_0__.HOTSPOT_COLOR
+        },
+        children: hotspot.showTitle && hotspot.title && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          className: "imagehotspot__title",
+          style: {
+            "--image-hotspot-title-color": hotspot.titleColor || _utils_constants__WEBPACK_IMPORTED_MODULE_0__.HOTSPOT_TITLE_COLOR
+          },
+          children: hotspot.title
+        })
+      }), hotspot.description && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "imagehotspot__tooltip",
+        style: {
+          "--image-hotspot-tooltip-color": hotspot.tooltipColor || _utils_constants__WEBPACK_IMPORTED_MODULE_0__.HOTSPOT_TOOLTIP_COLOR,
+          "--image-hotspot-tooltip-text-color": hotspot.tooltipTextColor || _utils_constants__WEBPACK_IMPORTED_MODULE_0__.HOTSPOT_TOOLTIP_TEXT_COLOR
+        },
+        children: [hotspot.videoURL && embedURL && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("iframe", {
+          width: "560",
+          height: "315",
+          src: embedURL,
+          title: "YouTube video player",
+          frameborder: "0",
+          allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+          referrerpolicy: "strict-origin-when-cross-origin",
+          allowfullscreen: true,
+          className: "imagehotspot__video"
+        }), hotspot.description]
+      })]
+    })
   });
 }
 
@@ -164,6 +356,7 @@ function MediaUploadComponent({
 }) {
   const hasMedia = value && (value.url || value.id);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.BaseControl, {
+    __nextHasNoMarginBottom: true,
     children: [hasMedia ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       style: {
         marginBottom: "1em"
@@ -216,7 +409,7 @@ function MediaUploadComponent({
   \**************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"hotspot/image-hotspot","version":"0.1.0","title":"Image Hotspot","category":"widgets","icon":"marker","description":"Make your images interactive by adding clickable hotspots with tooltips, links, and rich content.","keywords":["hotspot","image","interactive","tooltip","marker"],"attributes":{"image":{"type":"object","properties":{"url":{"type":"string","default":""},"id":{"type":"string","default":""}},"default":{"url":"","id":""}},"imageDescription":{"type":"string","default":""},"hotspots":{"type":"array","default":[],"items":{"type":"object","properties":{"index":{"type":"number","default":0},"icon":{"type":"string","default":""},"title":{"type":"string","default":""},"showTitle":{"type":"boolean","default":true},"description":{"type":"string","default":""},"link":{"type":"string","default":""},"enableAnimation":{"type":"boolean","default":true},"customColors":{"type":"boolean","default":false},"backgroundColor":{"type":"string","default":"#000000"},"titleColor":{"type":"string","default":"#ffffff"},"tooltipColor":{"type":"string","default":"#ffffff"},"tooltipTextColor":{"type":"string","default":"#000000"},"videoURL":{"type":"string","default":""},"position":{"type":"object","properties":{"x":{"type":"number","default":0},"y":{"type":"number","default":0}},"default":{"x":0,"y":0}}}}}},"example":{},"supports":{"html":false},"textdomain":"image-hotspot","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"hotspot/image-hotspot","version":"0.1.0","title":"Image Hotspot","category":"widgets","icon":"marker","description":"Make your images interactive by adding clickable hotspots with tooltips, links, and rich content.","keywords":["hotspot","image","interactive","tooltip","marker"],"attributes":{"image":{"type":"object","properties":{"url":{"type":"string","default":""},"id":{"type":"string","default":""}},"default":{"url":null,"id":null}},"imageDescription":{"type":"string","default":""},"hotspots":{"type":"array","default":[],"items":{"type":"object","properties":{"index":{"type":"number","default":0},"icon":{"type":"string","default":""},"title":{"type":"string","default":""},"showTitle":{"type":"boolean","default":true},"description":{"type":"string","default":""},"link":{"type":"string","default":""},"enableAnimation":{"type":"boolean","default":true},"customColors":{"type":"boolean","default":false},"backgroundColor":{"type":"string","default":""},"titleColor":{"type":"string","default":""},"tooltipColor":{"type":"string","default":""},"tooltipTextColor":{"type":"string","default":""},"videoURL":{"type":"string","default":""},"position":{"type":"object","properties":{"x":{"type":"number","default":0},"y":{"type":"number","default":0}},"default":{"x":0,"y":0}}}}}},"example":{},"supports":{"html":false},"textdomain":"image-hotspot","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }),
 
@@ -240,9 +433,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_media_upload__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/media-upload */ "./src/components/media-upload.js");
 /* harmony import */ var _components_hotspot_list__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/hotspot-list */ "./src/components/hotspot-list.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor.scss */ "./src/image-hotspot/editor.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _components_hotspot__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/hotspot */ "./src/components/hotspot.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./editor.scss */ "./src/image-hotspot/editor.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__);
 /**
  * WordPress dependencies
  */
@@ -254,6 +448,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Internal dependencies
  */
+
 
 
 
@@ -272,34 +467,58 @@ function Edit({
     hotspots
   } = attributes;
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+
+  // Handle image selection
+  const onSelectImage = media => {
+    setAttributes({
+      image: {
+        id: media.id,
+        url: media.url
+      }
+    });
+  };
+
+  // Handle image removal
+  const onRemoveImage = () => {
+    setAttributes({
+      image: {
+        id: null,
+        url: null
+      }
+    });
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Image", "image-hotspot"),
         initialOpen: true,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_media_upload__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          onSelect: () => {},
-          onRemove: () => {},
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_media_upload__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          onSelect: onSelectImage,
+          onRemove: onRemoveImage,
           value: image
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
           label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Image Description", "image-hotspot"),
           value: imageDescription,
           onChange: value => setAttributes({
             imageDescription: value
           }),
-          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Description for screen readers.", "image-hotspot")
+          help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Description for screen readers.", "image-hotspot"),
+          __next40pxDefaultSize: true,
+          __nextHasNoMarginBottom: true
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Hotspots", "image-hotspot"),
         initialOpen: true,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_hotspot_list__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_hotspot_list__WEBPACK_IMPORTED_MODULE_5__["default"], {
           hotspots: hotspots,
           setAttributes: setAttributes
         })
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
       ...blockProps,
-      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Image Hotspot - hello from the editor!", "image-hotspot")
+      children: hotspots?.map((hotspot, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_hotspot__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        hotspot: hotspot
+      }, index))
     })]
   });
 }
@@ -361,6 +580,51 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/utils/constants.js":
+/*!********************************!*\
+  !*** ./src/utils/constants.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   HOTSPOT_COLOR: () => (/* binding */ HOTSPOT_COLOR),
+/* harmony export */   HOTSPOT_TITLE_COLOR: () => (/* binding */ HOTSPOT_TITLE_COLOR),
+/* harmony export */   HOTSPOT_TOOLTIP_COLOR: () => (/* binding */ HOTSPOT_TOOLTIP_COLOR),
+/* harmony export */   HOTSPOT_TOOLTIP_TEXT_COLOR: () => (/* binding */ HOTSPOT_TOOLTIP_TEXT_COLOR)
+/* harmony export */ });
+const HOTSPOT_COLOR = "#0f5ff8";
+const HOTSPOT_TITLE_COLOR = "#ffffff";
+const HOTSPOT_TOOLTIP_COLOR = "#acacac";
+const HOTSPOT_TOOLTIP_TEXT_COLOR = "#000000";
+
+
+/***/ }),
+
+/***/ "./src/utils/helper.js":
+/*!*****************************!*\
+  !*** ./src/utils/helper.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getYoutubeEmbedURL: () => (/* binding */ getYoutubeEmbedURL)
+/* harmony export */ });
+// Get YouTube embed URL from a YouTube video URL
+const getYoutubeEmbedURL = url => {
+  try {
+    const urlObj = new URL(url);
+    const videoId = urlObj.searchParams.get("v");
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+  } catch (e) {
+    return null;
+  }
+};
+
+
+/***/ }),
+
 /***/ "@wordpress/block-editor":
 /*!*************************************!*\
   !*** external ["wp","blockEditor"] ***!
@@ -388,6 +652,16 @@ module.exports = window["wp"]["blocks"];
 /***/ ((module) => {
 
 module.exports = window["wp"]["components"];
+
+/***/ }),
+
+/***/ "@wordpress/data":
+/*!******************************!*\
+  !*** external ["wp","data"] ***!
+  \******************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["data"];
 
 /***/ }),
 

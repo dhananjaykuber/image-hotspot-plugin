@@ -31,8 +31,8 @@ return array(
 					)
 				),
 				'default' => array(
-					'url' => '',
-					'id' => ''
+					'url' => null,
+					'id' => null
 				)
 			),
 			'imageDescription' => array(
@@ -81,19 +81,19 @@ return array(
 						),
 						'backgroundColor' => array(
 							'type' => 'string',
-							'default' => '#000000'
+							'default' => ''
 						),
 						'titleColor' => array(
 							'type' => 'string',
-							'default' => '#ffffff'
+							'default' => ''
 						),
 						'tooltipColor' => array(
 							'type' => 'string',
-							'default' => '#ffffff'
+							'default' => ''
 						),
 						'tooltipTextColor' => array(
 							'type' => 'string',
-							'default' => '#000000'
+							'default' => ''
 						),
 						'videoURL' => array(
 							'type' => 'string',

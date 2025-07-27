@@ -1,15 +1,15 @@
 /*!******************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/image-hotspot/editor.scss ***!
   \******************************************************************************************************************************************************************************************************************************************************/
-.wp-block-hotspot-image-hotspot {
-  border: 1px dotted #f00;
-}
-
+@charset "UTF-8";
 .wp-image-color-palette {
   margin-bottom: 16px;
 }
 .wp-image-color-palette .wp-image-color-item {
   position: relative;
+  border: 2px solid transparent;
+  padding: 2px;
+  border-radius: 50px;
 }
 .wp-image-color-palette .wp-image-color {
   border: 1px solid rgba(0, 0, 0, 0.1411764706);
@@ -20,6 +20,25 @@
 }
 .wp-image-color-palette .wp-image-color:hover {
   transform: scale(1.1);
+}
+.wp-image-color-palette .is-selected {
+  border-color: #e6e6e6;
+}
+.wp-image-color-palette .is-selected button {
+  position: relative;
+}
+.wp-image-color-palette .is-selected button::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+}
+
+.wp-image-hotspot-inspector {
+  border-bottom: 1px solid #a3a3a3;
+  padding-bottom: 16px;
 }
 
 /*# sourceMappingURL=index.css.map*/

@@ -28,8 +28,8 @@
         }
       },
       "default": {
-        "url": "",
-        "id": ""
+        "url": null,
+        "id": null
       }
     },
     "imageDescription": {
@@ -76,19 +76,19 @@
           },
           "backgroundColor": {
             "type": "string",
-            "default": "#000000"
+            "default": ""
           },
           "titleColor": {
             "type": "string",
-            "default": "#ffffff"
+            "default": ""
           },
           "tooltipColor": {
             "type": "string",
-            "default": "#ffffff"
+            "default": ""
           },
           "tooltipTextColor": {
             "type": "string",
-            "default": "#000000"
+            "default": ""
           },
           "videoURL": {
             "type": "string",

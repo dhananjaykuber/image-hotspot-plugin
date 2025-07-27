@@ -2,9 +2,62 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/image-hotspot/style.scss ***!
   \*****************************************************************************************************************************************************************************************************************************************************/
 .wp-block-hotspot-image-hotspot {
-  background-color: #21759b;
-  color: #fff;
-  padding: 2px;
+  box-sizing: border-box;
+  position: relative;
+}
+.wp-block-hotspot-image-hotspot *,
+.wp-block-hotspot-image-hotspot *::before,
+.wp-block-hotspot-image-hotspot *::after {
+  box-sizing: inherit;
+}
+.wp-block-hotspot-image-hotspot .imagehotspot__hotspot {
+  background: var(--image-hotspot-color);
+  border: none;
+  min-width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.wp-block-hotspot-image-hotspot .imagehotspot__hotspot.is-animated {
+  animation: imagehotspot-pulse 2s infinite;
+}
+.wp-block-hotspot-image-hotspot .imagehotspot__hotspot:has(.imagehotspot__title) {
+  border-radius: 10px;
+}
+.wp-block-hotspot-image-hotspot .imagehotspot__hotspot:focus + .imagehotspot__tooltip, .wp-block-hotspot-image-hotspot .imagehotspot__hotspot:hover + .imagehotspot__tooltip {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+.wp-block-hotspot-image-hotspot .imagehotspot__title {
+  padding: 0 8px;
+  color: var(--image-hotspot-title-color);
+}
+.wp-block-hotspot-image-hotspot .imagehotspot__tooltip {
+  color: var(--image-hotspot-tooltip-text-color);
+  background: var(--image-hotspot-tooltip-color);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  max-width: 300px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.2s linear;
+}
+.wp-block-hotspot-image-hotspot .imagehotspot__video {
+  width: 100%;
+  height: 100%;
+}
+@keyframes imagehotspot-pulse {
+  0% {
+    box-shadow: 0 0 0 0 var(--image-hotspot-color);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(222, 84, 72, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(222, 84, 72, 0);
+  }
 }
 
 /*# sourceMappingURL=style-index.css.map*/
