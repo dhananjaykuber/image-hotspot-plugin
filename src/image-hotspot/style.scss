@@ -1,5 +1,76 @@
 .wp-block-hotspot-image-hotspot {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
+	box-sizing: border-box;
+	position: relative;
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: inherit;
+	}
+
+	.imagehotspot {
+		&__hotspot {
+			background: var(--image-hotspot-color);
+			border: none;
+			min-width: 38px;
+			height: 38px;
+			border-radius: 50%;
+			cursor: pointer;
+
+			&.is-animated {
+				animation: imagehotspot-pulse 2s infinite;
+			}
+
+			&:has(.imagehotspot__title) {
+				border-radius: 10px;
+			}
+
+			&:focus,
+			&:hover {
+				+ .imagehotspot__tooltip {
+					visibility: visible;
+					opacity: 1;
+					pointer-events: auto;
+				}
+			}
+		}
+
+		&__title {
+			padding: 0 8px;
+			color: var(--image-hotspot-title-color);
+		}
+
+		&__tooltip {
+			color: var(--image-hotspot-tooltip-text-color);
+			background: var(--image-hotspot-tooltip-color);
+			border-radius: 6px;
+			padding: 8px 12px;
+			font-size: 14px;
+			max-width: 300px;
+			visibility: hidden;
+			opacity: 0;
+			transition:
+				visibility 0s,
+				opacity 0.2s linear;
+		}
+
+		&__video {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	@keyframes imagehotspot-pulse {
+		0% {
+			box-shadow: 0 0 0 0 var(--image-hotspot-color);
+		}
+
+		70% {
+			box-shadow: 0 0 0 15px rgba(222, 84, 72, 0);
+		}
+
+		100% {
+			box-shadow: 0 0 0 0 rgba(222, 84, 72, 0);
+		}
+	}
 }

@@ -1,5 +1,4 @@
 .wp-block-hotspot-image-hotspot {
-	border: 1px dotted #f00;
 }
 
 // Color palette
@@ -41,4 +40,10 @@
 			}
 		}
 	}
+}
+
+// Inspector controls
+.wp-image-hotspot-inspector {
+	border-bottom: 1px solid #a3a3a3;
+	padding-bottom: 16px;
 }
