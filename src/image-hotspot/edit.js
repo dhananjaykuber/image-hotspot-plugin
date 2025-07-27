@@ -36,6 +36,8 @@ export default function Edit({ attributes, setAttributes }) {
 						value={imageDescription}
 						onChange={(value) => setAttributes({ imageDescription: value })}
 						help={__("Description for screen readers.", "image-hotspot")}
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
 					/>
 				</PanelBody>
 

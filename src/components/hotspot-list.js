@@ -10,27 +10,87 @@ import {
 	TextControl,
 	ToggleControl,
 } from "@wordpress/components";
-import ColorPalette from "./color-palette";
+
+/**
+ * Internal dependencies
+ */
+import ColorControl from "./color-control";
 
 export default function HotspotList({ hotspots, setAttributes }) {
+	// Handle value change for each hotspot
+	const handleValueChange = (index, field, value) => {
+		const updatedHotspots = [...hotspots];
+		updatedHotspots[index] = {
+			...updatedHotspots[index],
+			[field]: value,
+		};
+		setAttributes({ hotspots: updatedHotspots });
+	};
+
 	return (
 		<Flex direction={"column"} gap={2}>
 			{hotspots.map((hotspot, index) => (
 				<FlexItem key={index}>
 					<FlexBlock>
-						<TextControl label={__("Title", "image-hotspot")} />
-						<ToggleControl label={__("Show Title", "image-hotspot")} />
-						<TextControl label={__("Description", "image-hotspot")} />
-						<TextControl label={__("Link", "image-hotspot")} />
-						<ToggleControl label={__("Animation", "image-hotspot")} />
-						<ToggleControl label={__("Custom Color", "image-hotspot")} />
-						<ColorPalette label={__("Background Color", "image-hotspot")} />
-						<ColorPalette label={__("Title Color", "image-hotspot")} />
-						<ColorPalette label={__("Tooltip Color", "image-hotspot")} />
-						<ColorPalette label={__("Tooltip Text Color", "image-hotspot")} />
+						<TextControl
+							label={__("Title", "image-hotspot")}
+							value={hotspot.title}
+							onChange={(value) => handleValueChange(index, "title", value)}
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
+						/>
+						<ToggleControl
+							label={__("Show Title", "image-hotspot")}
+							checked={hotspot.showTitle}
+							onChange={(value) => handleValueChange(index, "showTitle", value)}
+							__nextHasNoMarginBottom
+						/>
+						<TextControl
+							label={__("Description", "image-hotspot")}
+							value={hotspot.description}
+							onChange={(value) =>
+								handleValueChange(index, "description", value)
+							}
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
+						/>
+						<TextControl
+							label={__("Link", "image-hotspot")}
+							value={hotspot.link}
+							onChange={(value) => handleValueChange(index, "link", value)}
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
+						/>
+						<ToggleControl
+							label={__("Animation", "image-hotspot")}
+							checked={hotspot.enableAnimation}
+							onChange={(value) =>
+								handleValueChange(index, "enableAnimation", value)
+							}
+							__nextHasNoMarginBottom
+						/>
+						<ToggleControl
+							label={__("Custom Color", "image-hotspot")}
+							checked={hotspot.customColors}
+							onChange={(value) =>
+								handleValueChange(index, "customColors", value)
+							}
+							__nextHasNoMarginBottom
+						/>
+
+						<ColorControl
+							hotspots={hotspots}
+							setAttributes={setAttributes}
+							index={index}
+						/>
+
 						<TextControl
 							label={__("Video URL", "image-hotspot")}
+							value={hotspot.videoURL}
+							onChange={(value) => handleValueChange(index, "videoURL", value)}
 							help={__("Embed video from YouTube", "image-hotspot")}
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
 						/>
 					</FlexBlock>
 				</FlexItem>

@@ -9,7 +9,7 @@ export default function MediaUploadComponent({ onSelect, onRemove, value }) {
 	const hasMedia = value && (value.url || value.id);
 
 	return (
-		<BaseControl>
+		<BaseControl __nextHasNoMarginBottom>
 			{hasMedia ? (
 				<div style={{ marginBottom: "1em" }}>
 					<img
