@@ -27,11 +27,18 @@ export default function HotspotList({ hotspots, setAttributes }) {
 		setAttributes({ hotspots: updatedHotspots });
 	};
 
+	// Handle removing a hotspot
+	const handleRemoveHotspot = (index) => {
+		const updatedHotspots = [...hotspots];
+		updatedHotspots.splice(index, 1);
+		setAttributes({ hotspots: updatedHotspots });
+	};
+
 	return (
 		<Flex direction={"column"} gap={2}>
 			{hotspots.map((hotspot, index) => (
 				<FlexItem key={index}>
-					<FlexBlock>
+					<FlexBlock className="wp-image-hotspot-inspector">
 						<TextControl
 							label={__("Title", "image-hotspot")}
 							value={hotspot.title}
@@ -92,6 +99,14 @@ export default function HotspotList({ hotspots, setAttributes }) {
 							__next40pxDefaultSize
 							__nextHasNoMarginBottom
 						/>
+
+						<Button
+							variant="primary"
+							isDestructive
+							onClick={() => handleRemoveHotspot(index)}
+						>
+							{__("Remove Hotspot", "image-hotspot")}
+						</Button>
 					</FlexBlock>
 				</FlexItem>
 			))}

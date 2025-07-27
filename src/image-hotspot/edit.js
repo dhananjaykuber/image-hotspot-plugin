@@ -11,6 +11,7 @@ import { Fragment } from "@wordpress/element";
  */
 import MediaUploadComponent from "../components/media-upload";
 import HotspotList from "../components/hotspot-list";
+import Hotspot from "../components/hotspot";
 
 /**
  * Styles
@@ -22,13 +23,33 @@ export default function Edit({ attributes, setAttributes }) {
 
 	const blockProps = useBlockProps();
 
+	// Handle image selection
+	const onSelectImage = (media) => {
+		setAttributes({
+			image: {
+				id: media.id,
+				url: media.url,
+			},
+		});
+	};
+
+	// Handle image removal
+	const onRemoveImage = () => {
+		setAttributes({
+			image: {
+				id: null,
+				url: null,
+			},
+		});
+	};
+
 	return (
 		<Fragment>
 			<InspectorControls>
 				<PanelBody title={__("Image", "image-hotspot")} initialOpen={true}>
 					<MediaUploadComponent
-						onSelect={() => {}}
-						onRemove={() => {}}
+						onSelect={onSelectImage}
+						onRemove={onRemoveImage}
 						value={image}
 					/>
 					<TextControl
@@ -47,7 +68,9 @@ export default function Edit({ attributes, setAttributes }) {
 			</InspectorControls>
 
 			<div {...blockProps}>
-				{__("Image Hotspot - hello from the editor!", "image-hotspot")}
+				{hotspots?.map((hotspot, index) => (
+					<Hotspot key={index} hotspot={hotspot} />
+				))}
 			</div>
 		</Fragment>
 	);
