@@ -1,8 +1,91 @@
 <?php
 /**
- * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
+ * Template of the `image-hotspot` block.
+ *
+ * @package image-hotspot
  */
+
+$image             = $attributes['image'] ?? null;
+$image_description = $attributes['imageDescription'] ?? '';
+$hotspots          = $attributes['hotspots'] ?? array();
+
 ?>
-<p <?php echo get_block_wrapper_attributes(); ?>>
-	<?php esc_html_e( 'Image Hotspot – hello from a dynamic block!', 'image-hotspot' ); ?>
-</p>
+
+<div <?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>>
+	<div class="imagehotspot__wrapper">
+		<?php
+		if ( ! empty( $image ) ) :
+			echo wp_get_attachment_image(
+				$image['id'],
+				'full',
+				false,
+				array(
+					'class' => 'imagehotspot__image',
+					'alt'   => $image_description,
+				)
+			);
+		endif;
+
+		if ( is_array( $hotspots ) && ! empty( $hotspots ) ) :
+			foreach ( $hotspots as $hotspot ) :
+				$enable_animation   = $hotspot['enableAnimation'] ?? true;
+				$hotspot_color      = $hotspot['hotspotColor'] ?? '#0f5ff8';
+				$title_color        = $hotspot['titleColor'] ?? '#ffffff';
+				$tooltip_color      = $hotspot['tooltipColor'] ?? '#ffffff';
+				$tooltip_text_color = $hotspot['tooltipTextColor'] ?? '#000000';
+				$icon               = $hotspot['icon'] ?? '';
+				$show_title         = $hotspot['showTitle'] ?? true;
+				$hotspot_title      = $hotspot['title'] ?? '';
+				$description        = $hotspot['description'] ?? '';
+				$video_url          = $hotspot['videoURL'] ?? '';
+
+				?>
+
+				<div class="imagehotspot__container">
+					<button
+						class="<?php printf( 'imagehotspot__hotspot %s', $enable_animation ? 'is-animated' : '' ); ?>"
+						style="<?php printf( '--image-hotspot-color: %1$s; --image-hotspot-title-color: %2$s; --image-hotspot-icon: %3$s; ', esc_attr( $hotspot_color ), esc_attr( $title_color ), esc_attr( $icon ) ); ?>"
+					>
+						<?php
+						if ( ! empty( $icon ) ) {
+							echo '<span class="imagehotspot__hotspot-icon" role="presentation"></span>';
+						}
+
+						if ( $show_title && ! empty( $hotspot_title ) ) {
+							printf( '<span class="imagehotspot__hotspot-title">%s</span>', esc_html( $hotspot_title ) );
+						}
+						?>
+					</button>
+
+					<?php if ( ! empty( $description ) ) : ?>
+						<div
+							class="imagehotspot__tooltip"
+							style="<?php printf( '--image-hotspot-tooltip-color: %1$s; --image-hotspot-tooltip-text-color: %2$s;', esc_attr( $tooltip_color ), esc_attr( $tooltip_text_color ) ); ?>"
+						>
+							<?php if ( ! empty( $video_url ) ) : ?>
+								<iframe
+									width="560"
+									height="315"
+									src="<?php echo esc_url( wp_image_hotspot_get_youtube_embed_url( $video_url ) ); ?>"
+									title="<?php esc_attr_e( 'YouTube video player', 'image-hotspot' ); ?>"
+									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+									referrerPolicy="strict-origin-when-cross-origin"
+									allowFullScreen
+									class="imagehotspot__tooltip-video"
+								></iframe>
+							<?php endif; ?>
+
+							<div class="imagehotspot__tooltip-description">
+								<?php echo esc_html( $description ); ?>
+							</div>
+						</div>
+					<?php endif; ?>
+				</div>
+
+				<?php
+			endforeach;
+		endif;
+
+		?>
+	</div>
+</div>
