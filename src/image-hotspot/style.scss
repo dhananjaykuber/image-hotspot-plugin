@@ -49,9 +49,23 @@
 			max-width: 300px;
 			visibility: hidden;
 			opacity: 0;
+			pointer-events: none;
 			transition:
 				visibility 0s,
 				opacity 0.2s linear;
+
+			&:hover {
+				visibility: visible;
+				opacity: 1;
+				pointer-events: auto;
+			}
+		}
+
+		&__hotspot:hover + &__tooltip,
+		&__tooltip:hover {
+			visibility: visible;
+			opacity: 1;
+			pointer-events: auto;
 		}
 
 		&__video {
