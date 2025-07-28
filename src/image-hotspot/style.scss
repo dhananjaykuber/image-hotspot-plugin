@@ -28,13 +28,14 @@
 			border-radius: 50%;
 			cursor: pointer;
 			position: absolute;
+			white-space: nowrap;
 
 			&.is-animated {
 				animation: imagehotspot-pulse 2s infinite;
 			}
 
 			&:has(.imagehotspot__hotspot-title) {
-				border-radius: 10px;
+				border-radius: 14px;
 			}
 
 			&:focus,
@@ -53,16 +54,22 @@
 		}
 
 		&__tooltip {
+			position: absolute;
+			top: 50px;
+			left: 50%;
+			transform: translateX(-50%);
 			color: var(--image-hotspot-tooltip-text-color);
 			background: var(--image-hotspot-tooltip-color);
 			border-radius: 6px;
 			font-size: 14px;
-			max-width: 300px;
+			width: 300px;
+			max-width: 90vw;
 			box-shadow:
 				0 1px 1px rgba(0, 0, 0, 0.05),
 				0 4px 6px rgba(34, 42, 53, 0.04),
 				0 24px 68px rgba(47, 48, 55, 0.05),
 				0 2px 3px rgba(0, 0, 0, 0.04);
+			z-index: 1000;
 			visibility: hidden;
 			opacity: 0;
 			pointer-events: none;
@@ -85,7 +92,9 @@
 		}
 
 		&__tooltip-description {
-			padding: 0 12px 8px;
+			padding: 8px 12px;
+			font-weight: 400;
+			line-height: 1.5;
 		}
 
 		&__tooltip-video {

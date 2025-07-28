@@ -1,6 +1,6 @@
 const HOTSPOT_COLOR = "#0f5ff8";
 const HOTSPOT_TITLE_COLOR = "#ffffff";
-const HOTSPOT_TOOLTIP_COLOR = "#acacac";
+const HOTSPOT_TOOLTIP_COLOR = "#ffffff";
 const HOTSPOT_TOOLTIP_TEXT_COLOR = "#000000";
 
 export {
