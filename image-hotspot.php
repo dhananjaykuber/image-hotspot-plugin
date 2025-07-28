@@ -46,3 +46,37 @@ function wp_image_hotspot_block_init() {
 }
 
 add_action( 'init', 'wp_image_hotspot_block_init' );
+
+/**
+ * Get YouTube embed URL from a standard YouTube video URL.
+ *
+ * @param string $url The YouTube video URL.
+ * @return string|null The embed URL or null if invalid.
+ */
+function wp_image_hotspot_get_youtube_embed_url( $url ) {
+
+	if ( empty( $url ) || ! filter_var( $url, FILTER_VALIDATE_URL ) ) {
+		return null;
+	}
+
+	$parsed_url = wp_parse_url( $url );
+
+	if (
+		empty( $parsed_url['host'] ) ||
+		! in_array( $parsed_url['host'], array( 'www.youtube.com', 'youtube.com' ), true )
+	) {
+		return null;
+	}
+
+	if ( empty( $parsed_url['query'] ) ) {
+		return null;
+	}
+
+	parse_str( $parsed_url['query'], $query_params );
+
+	if ( empty( $query_params['v'] ) ) {
+		return null;
+	}
+
+	return 'https://www.youtube.com/embed/' . esc_attr( $query_params['v'] );
+}
