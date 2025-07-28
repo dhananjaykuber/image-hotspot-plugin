@@ -64,18 +64,19 @@ export default function Hotspot({
 					className={`imagehotspot__hotspot ${animate && "is-animated"}`}
 					style={{
 						"--image-hotspot-color": hotspot.backgroundColor || HOTSPOT_COLOR,
+						"--image-hotspot-title-color":
+							hotspot.titleColor || HOTSPOT_TITLE_COLOR,
+						"--image-hotspot-icon": hotspot.icon,
 					}}
 				>
-					{hotspot.showTitle && hotspot.title && (
+					{hotspot.icon && (
 						<span
-							className="imagehotspot__hotspot-title"
-							style={{
-								"--image-hotspot-title-color":
-									hotspot.titleColor || HOTSPOT_TITLE_COLOR,
-							}}
-						>
-							{hotspot.title}
-						</span>
+							className="imagehotspot__hotspot-icon"
+							role="presentation"
+						></span>
+					)}
+					{hotspot.showTitle && hotspot.title && (
+						<span className="imagehotspot__hotspot-title">{hotspot.title}</span>
 					)}
 				</button>
 

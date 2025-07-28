@@ -29,6 +29,9 @@
 			cursor: pointer;
 			position: absolute;
 			white-space: nowrap;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 
 			&.is-animated {
 				animation: imagehotspot-pulse 2s infinite;
@@ -45,6 +48,30 @@
 					opacity: 1;
 					pointer-events: auto;
 				}
+			}
+		}
+
+		&__hotspot-icon {
+			display: inline-block;
+			flex-shrink: 0;
+			width: 20px;
+			height: 20px;
+
+			&::after {
+				background: var(--image-hotspot-title-color);
+				content: "";
+				display: inline-block;
+				background-size: contain;
+				-webkit-mask-image: var(--image-hotspot-icon);
+				mask-image: var(--image-hotspot-icon);
+				-webkit-mask-position: center center;
+				mask-position: center center;
+				-webkit-mask-repeat: no-repeat;
+				mask-repeat: no-repeat;
+				-webkit-mask-size: 20px 20px;
+				mask-size: 20px 20px;
+				width: 20px;
+				height: 20px;
 			}
 		}
 

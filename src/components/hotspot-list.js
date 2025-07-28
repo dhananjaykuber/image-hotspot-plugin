@@ -50,6 +50,17 @@ export default function HotspotList({ hotspots, setAttributes }) {
 				<FlexItem key={index}>
 					<FlexBlock className="wp-image-hotspot-inspector">
 						<TextControl
+							label={__("Icon", "image-hotspot")}
+							value={hotspot.icon}
+							onChange={(value) => handleValueChange(index, "icon", value)}
+							help={__(
+								'Enter encoded SVG markup. eg. url("data:image/svg+xml;utf8,<svg>...</svg>")',
+								"image-hotspot",
+							)}
+							__next40pxDefaultSize
+							__nextHasNoMarginBottom
+						/>
+						<TextControl
 							label={__("Title", "image-hotspot")}
 							value={hotspot.title}
 							onChange={(value) => handleValueChange(index, "title", value)}
