@@ -58,7 +58,9 @@ export default function Hotspot({ hotspot }) {
 								className="imagehotspot__video"
 							></iframe>
 						)}
-						{hotspot.description}
+						<div className="imagehotspot__description">
+							{hotspot.description}
+						</div>
 					</div>
 				)}
 			</div>
