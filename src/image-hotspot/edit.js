@@ -45,10 +45,7 @@ export default function Edit({ attributes, setAttributes }) {
 	// Handle image removal
 	const onRemoveImage = () => {
 		setAttributes({
-			image: {
-				id: null,
-				url: null,
-			},
+			image: null,
 		});
 	};
 
@@ -141,7 +138,7 @@ export default function Edit({ attributes, setAttributes }) {
 						imageDimensions.width > 0 &&
 						hotspots?.map((hotspot, index) => (
 							<Hotspot
-								key={`hotspot-${index}-${imageDimensions.width}`}
+								key={`hotspot-${index}`}
 								index={index}
 								hotspot={hotspot}
 								updateHotspotPosition={updateHotspotPosition}

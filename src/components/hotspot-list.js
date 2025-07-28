@@ -40,6 +40,10 @@ export default function HotspotList({ hotspots, setAttributes }) {
 			title: "",
 			description: "",
 			position: { x: 10, y: 10 },
+			hotspotColor: "#0f5ff8",
+			titleColor: "#ffffff",
+			tooltipColor: "#ffffff",
+			tooltipTextColor: "#000000",
 		};
 		setAttributes({ hotspots: [...hotspots, newHotspot] });
 	};
