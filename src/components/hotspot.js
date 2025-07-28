@@ -9,12 +9,56 @@ import {
 } from "../utils/constants";
 import { getYoutubeEmbedURL } from "../utils/helper";
 
-export default function Hotspot({ hotspot }) {
+/**
+ * External dependencies
+ */
+import { Rnd } from "react-rnd";
+import { useEffect, useState } from "@wordpress/element";
+
+export default function Hotspot({
+	index,
+	hotspot,
+	updateHotspotPosition,
+	imageDimensions,
+}) {
 	const animate = hotspot.enableAnimation || true;
 	const embedURL = getYoutubeEmbedURL(hotspot.videoURL);
 
+	// Convert percentage position to pixels for Rnd
+	const getPixelPosition = () => {
+		if (
+			!hotspot.position ||
+			!imageDimensions.width ||
+			!imageDimensions.height
+		) {
+			return { x: 10, y: 10 };
+		}
+
+		return {
+			x: (hotspot.position.x / 100) * imageDimensions.width,
+			y: (hotspot.position.y / 100) * imageDimensions.height,
+		};
+	};
+
+	const [currentPosition, setCurrentPosition] = useState(getPixelPosition());
+
+	// Update position when image dimensions or hotspot position changes
+	useEffect(() => {
+		setCurrentPosition(getPixelPosition());
+	}, [hotspot.position, imageDimensions]);
+
 	return (
-		<div className="imagehotspot">
+		<Rnd
+			position={currentPosition}
+			size={{ width: 38, height: 38 }}
+			enableResizing={false}
+			onDragStop={(event, data) => {
+				updateHotspotPosition(index, { x: data.x, y: data.y });
+			}}
+			onDrag={(event, data) => {
+				setCurrentPosition({ x: data.x, y: data.y });
+			}}
+		>
 			<div className="imagehotspot__container">
 				<button
 					className={`imagehotspot__hotspot ${animate && "is-animated"}`}
@@ -24,7 +68,7 @@ export default function Hotspot({ hotspot }) {
 				>
 					{hotspot.showTitle && hotspot.title && (
 						<span
-							className="imagehotspot__title"
+							className="imagehotspot__hotspot-title"
 							style={{
 								"--image-hotspot-title-color":
 									hotspot.titleColor || HOTSPOT_TITLE_COLOR,
@@ -51,19 +95,18 @@ export default function Hotspot({ hotspot }) {
 								height="315"
 								src={embedURL}
 								title="YouTube video player"
-								frameborder="0"
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-								referrerpolicy="strict-origin-when-cross-origin"
-								allowfullscreen
-								className="imagehotspot__video"
+								referrerPolicy="strict-origin-when-cross-origin"
+								allowFullScreen
+								className="imagehotspot__tooltip-video"
 							></iframe>
 						)}
-						<div className="imagehotspot__description">
+						<div className="imagehotspot__tooltip-description">
 							{hotspot.description}
 						</div>
 					</div>
 				)}
 			</div>
-		</div>
+		</Rnd>
 	);
 }

@@ -34,6 +34,16 @@ export default function HotspotList({ hotspots, setAttributes }) {
 		setAttributes({ hotspots: updatedHotspots });
 	};
 
+	// Handle adding a new hotspot
+	const handleAddHotspot = () => {
+		const newHotspot = {
+			title: "",
+			description: "",
+			position: { x: 10, y: 10 },
+		};
+		setAttributes({ hotspots: [...hotspots, newHotspot] });
+	};
+
 	return (
 		<Flex direction={"column"} gap={2}>
 			{hotspots.map((hotspot, index) => (
@@ -112,13 +122,7 @@ export default function HotspotList({ hotspots, setAttributes }) {
 			))}
 
 			<FlexItem>
-				<Button
-					variant="primary"
-					onClick={() => {
-						const newHotspot = { title: "", description: "" };
-						setAttributes({ hotspots: [...hotspots, newHotspot] });
-					}}
-				>
+				<Button variant="primary" onClick={handleAddHotspot}>
 					{__("Add Hotspot", "image-hotspot")}
 				</Button>
 			</FlexItem>
