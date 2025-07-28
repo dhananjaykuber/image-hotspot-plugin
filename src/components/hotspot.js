@@ -1,4 +1,9 @@
 /**
+ * WordPress dependencies
+ */
+import { __ } from "@wordpress/i18n";
+
+/**
  * Internal dependencies
  */
 import {
@@ -95,7 +100,7 @@ export default function Hotspot({
 								width="560"
 								height="315"
 								src={embedURL}
-								title="YouTube video player"
+								title={__("YouTube video player", "image-hotspot")}
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 								referrerPolicy="strict-origin-when-cross-origin"
 								allowFullScreen
