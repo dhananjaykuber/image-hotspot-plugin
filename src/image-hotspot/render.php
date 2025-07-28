@@ -14,14 +14,14 @@ $hotspots          = $attributes['hotspots'] ?? array();
 <div <?php echo wp_kses_data( get_block_wrapper_attributes() ); ?>>
 	<div class="imagehotspot__wrapper">
 		<?php
-		if ( ! empty( $image ) ) :
+		if ( ! empty( $image ) && is_array( $image ) && ! empty( $image['id'] ) ) :
 			echo wp_get_attachment_image(
 				$image['id'],
 				'full',
 				false,
 				array(
 					'class' => 'imagehotspot__image',
-					'alt'   => $image_description,
+					'alt'   => esc_attr( $image_description ),
 				)
 			);
 		endif;
