@@ -38,10 +38,16 @@ $hotspots          = $attributes['hotspots'] ?? array();
 				$hotspot_title      = $hotspot['title'] ?? '';
 				$description        = $hotspot['description'] ?? '';
 				$video_url          = $hotspot['videoURL'] ?? '';
+				$position           = $hotspot['position'] ?? array(
+					'x' => 10,
+					'y' => 10,
+				);
+				$position_x         = isset( $position['x'] ) ? floatval( $position['x'] ) : 10;
+				$position_y         = isset( $position['y'] ) ? floatval( $position['y'] ) : 10;
 
 				?>
 
-				<div class="imagehotspot__container">
+				<div class="imagehotspot__container" style="<?php printf( 'left: %1$s%%; top: %2$s%%;', esc_attr( $position_x ), esc_attr( $position_y ) ); ?>">
 					<button
 						class="<?php printf( 'imagehotspot__hotspot %s', $enable_animation ? 'is-animated' : '' ); ?>"
 						style="<?php printf( '--image-hotspot-color: %1$s; --image-hotspot-title-color: %2$s; --image-hotspot-icon: %3$s; ', esc_attr( $hotspot_color ), esc_attr( $title_color ), esc_attr( $icon ) ); ?>"
@@ -76,7 +82,7 @@ $hotspots          = $attributes['hotspots'] ?? array();
 							<?php endif; ?>
 
 							<div class="imagehotspot__tooltip-description">
-								<?php echo esc_html( $description ); ?>
+								<?php echo wp_kses_post( $description ); ?>
 							</div>
 						</div>
 					<?php endif; ?>
