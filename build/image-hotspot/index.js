@@ -4042,6 +4042,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function HotspotList({
+  image,
   hotspots,
   setAttributes
 }) {
@@ -4152,6 +4153,7 @@ function HotspotList({
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
         variant: "primary",
         onClick: handleAddHotspot,
+        disabled: !image?.url,
         children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Add Hotspot", "image-hotspot")
       })
     })]
@@ -4541,6 +4543,7 @@ function Edit({
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Hotspots", "image-hotspot"),
         initialOpen: true,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_hotspot_list__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          image: image,
           hotspots: hotspots,
           setAttributes: setAttributes
         })
@@ -4550,12 +4553,21 @@ function Edit({
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
         className: "imagehotspot__wrapper",
         ref: containerRef,
-        children: [image?.url && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
+        children: [image?.url ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("img", {
           src: image.url,
           alt: imageDescription,
           className: "imagehotspot__image",
           ref: imageRef,
           onLoad: handleImageLoad
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+          className: "imagehotspot__placeholder",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
+            className: "imagehotspot__placeholder-icon"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_media_upload__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            onSelect: onSelectImage,
+            onRemove: onRemoveImage,
+            value: image
+          })]
         }), image?.url && imageDimensions.width > 0 && hotspots?.map((hotspot, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_hotspot__WEBPACK_IMPORTED_MODULE_6__["default"], {
           index: index,
           hotspot: hotspot,

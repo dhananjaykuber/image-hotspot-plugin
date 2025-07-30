@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Default position of tooltip below the hotspot
     const top = hotspot.offsetTop + hotspot.offsetHeight + spacing;
-    const left = hotspot.offsetLeft + hotspot.offsetWidth / 2 - tooltip.offsetWidth / 2;
+    const left = hotspot.offsetLeft + hotspot.offsetWidth / 2 - tooltip.offsetWidth / 1.9;
     tooltip.style.top = `${top}px`;
     tooltip.style.left = `${left}px`;
 
