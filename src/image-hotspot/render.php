@@ -29,7 +29,7 @@ $hotspots          = $attributes['hotspots'] ?? array();
 		if ( is_array( $hotspots ) && ! empty( $hotspots ) ) :
 			foreach ( $hotspots as $hotspot ) :
 				$enable_animation   = $hotspot['enableAnimation'] ?? true;
-				$hotspot_color      = $hotspot['hotspotColor'] ?? '#0f5ff8';
+				$hotspot_color      = $hotspot['backgroundColor'] ?? '#0f5ff8';
 				$title_color        = $hotspot['titleColor'] ?? '#ffffff';
 				$tooltip_color      = $hotspot['tooltipColor'] ?? '#ffffff';
 				$tooltip_text_color = $hotspot['tooltipTextColor'] ?? '#000000';
@@ -47,10 +47,10 @@ $hotspots          = $attributes['hotspots'] ?? array();
 
 				?>
 
-				<div class="imagehotspot__container" style="<?php printf( 'left: %1$s%%; top: %2$s%%;', esc_attr( $position_x ), esc_attr( $position_y ) ); ?>">
-					<button
+				<div class="imagehotspot__container">
+					<button absolute;
 						class="<?php printf( 'imagehotspot__hotspot %s', $enable_animation ? 'is-animated' : '' ); ?>"
-						style="<?php printf( '--image-hotspot-color: %1$s; --image-hotspot-title-color: %2$s; --image-hotspot-icon: %3$s; ', esc_attr( $hotspot_color ), esc_attr( $title_color ), esc_attr( $icon ) ); ?>"
+						style="<?php printf( '--image-hotspot-color: %1$s; --image-hotspot-title-color: %2$s; --image-hotspot-icon: %3$s; left: %4$s%%; top: %5$s%%;', esc_attr( $hotspot_color ), esc_attr( $title_color ), esc_attr( $icon ), esc_attr( $position_x ), esc_attr( $position_y ) ); ?>"
 					>
 						<?php
 						if ( ! empty( $icon ) ) {
@@ -63,7 +63,7 @@ $hotspots          = $attributes['hotspots'] ?? array();
 						?>
 					</button>
 
-					<?php if ( ! empty( $description ) ) : ?>
+					<?php if ( ! empty( $description ) || ! empty( $video_url ) ) : ?>
 						<div
 							class="imagehotspot__tooltip"
 							style="<?php printf( '--image-hotspot-tooltip-color: %1$s; --image-hotspot-tooltip-text-color: %2$s;', esc_attr( $tooltip_color ), esc_attr( $tooltip_text_color ) ); ?>"
