@@ -15,6 +15,12 @@ import {
  * Internal dependencies
  */
 import ColorControl from "./color-control";
+import {
+	HOTSPOT_COLOR,
+	HOTSPOT_TITLE_COLOR,
+	HOTSPOT_TOOLTIP_COLOR,
+	HOTSPOT_TOOLTIP_TEXT_COLOR,
+} from "../utils/constants";
 
 export default function HotspotList({ hotspots, setAttributes }) {
 	// Handle value change for each hotspot
@@ -40,10 +46,10 @@ export default function HotspotList({ hotspots, setAttributes }) {
 			title: "",
 			description: "",
 			position: { x: 10, y: 10 },
-			hotspotColor: "#0f5ff8",
-			titleColor: "#ffffff",
-			tooltipColor: "#ffffff",
-			tooltipTextColor: "#000000",
+			backgroundColor: HOTSPOT_COLOR,
+			titleColor: HOTSPOT_TITLE_COLOR,
+			tooltipColor: HOTSPOT_TOOLTIP_COLOR,
+			tooltipTextColor: HOTSPOT_TOOLTIP_TEXT_COLOR,
 		};
 		setAttributes({ hotspots: [...hotspots, newHotspot] });
 	};

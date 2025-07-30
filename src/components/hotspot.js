@@ -85,7 +85,7 @@ export default function Hotspot({
 					)}
 				</button>
 
-				{hotspot.description && (
+				{(hotspot.description || hotspot.videoURL) && (
 					<div
 						className="imagehotspot__tooltip"
 						style={{
