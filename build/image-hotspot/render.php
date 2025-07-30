@@ -38,6 +38,7 @@ $hotspots          = $attributes['hotspots'] ?? array();
 				$hotspot_title      = $hotspot['title'] ?? '';
 				$description        = $hotspot['description'] ?? '';
 				$video_url          = $hotspot['videoURL'] ?? '';
+				$hotspot_link       = $hotspot['link'] ?? '';
 				$position           = $hotspot['position'] ?? array(
 					'x' => 10,
 					'y' => 10,
@@ -45,10 +46,13 @@ $hotspots          = $attributes['hotspots'] ?? array();
 				$position_x         = isset( $position['x'] ) ? floatval( $position['x'] ) : 10;
 				$position_y         = isset( $position['y'] ) ? floatval( $position['y'] ) : 10;
 
+				// Determine the tag name based on whether a link is provided.
+				$tag_name = ! empty( $hotspot_link ) ? 'a' : 'button';
+
 				?>
 
 				<div class="imagehotspot__container">
-					<button absolute;
+					<<?php printf( '%1$s %2$s', esc_html( $tag_name ), ! empty( $hotspot_link ) ? sprintf( 'href="%s"', esc_url( $hotspot_link ) ) : '' ); ?>
 						class="<?php printf( 'imagehotspot__hotspot %s', $enable_animation ? 'is-animated' : '' ); ?>"
 						style="<?php printf( '--image-hotspot-color: %1$s; --image-hotspot-title-color: %2$s; --image-hotspot-icon: %3$s; left: %4$s%%; top: %5$s%%;', esc_attr( $hotspot_color ), esc_attr( $title_color ), esc_attr( $icon ), esc_attr( $position_x ), esc_attr( $position_y ) ); ?>"
 					>
@@ -61,7 +65,7 @@ $hotspots          = $attributes['hotspots'] ?? array();
 							printf( '<span class="imagehotspot__hotspot-title">%s</span>', esc_html( $hotspot_title ) );
 						}
 						?>
-					</button>
+					</<?php printf( '%s', esc_html( $tag_name ) ); ?>>
 
 					<?php if ( ! empty( $description ) || ! empty( $video_url ) ) : ?>
 						<div
