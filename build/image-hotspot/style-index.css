@@ -20,6 +20,7 @@
   display: block;
 }
 .wp-block-hotspot-image-hotspot .imagehotspot__hotspot {
+  position: absolute;
   background: var(--image-hotspot-color);
   border: none;
   min-width: 38px;
@@ -71,9 +72,6 @@
 }
 .wp-block-hotspot-image-hotspot .imagehotspot__tooltip {
   position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
   color: var(--image-hotspot-tooltip-text-color);
   background: var(--image-hotspot-tooltip-color);
   border-radius: 6px;
@@ -84,26 +82,13 @@
   z-index: 1000;
   visibility: hidden;
   opacity: 0;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
   pointer-events: none;
-  transition: visibility 0s, opacity 0.2s linear;
 }
 .wp-block-hotspot-image-hotspot .imagehotspot__tooltip:hover {
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
-}
-.wp-block-hotspot-image-hotspot .imagehotspot__tooltip::before {
-  content: "";
-  position: absolute;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 10px solid var(--image-hotspot-tooltip-color);
-  z-index: 1000;
 }
 .wp-block-hotspot-image-hotspot .imagehotspot__hotspot:hover + .wp-block-hotspot-image-hotspot .imagehotspot__tooltip, .wp-block-hotspot-image-hotspot .imagehotspot__tooltip:hover {
   visibility: visible;
