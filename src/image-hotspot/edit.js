@@ -118,13 +118,17 @@ export default function Edit({ attributes, setAttributes }) {
 				</PanelBody>
 
 				<PanelBody title={__("Hotspots", "image-hotspot")} initialOpen={true}>
-					<HotspotList hotspots={hotspots} setAttributes={setAttributes} />
+					<HotspotList
+						image={image}
+						hotspots={hotspots}
+						setAttributes={setAttributes}
+					/>
 				</PanelBody>
 			</InspectorControls>
 
 			<div {...blockProps}>
 				<div className="imagehotspot__wrapper" ref={containerRef}>
-					{image?.url && (
+					{image?.url ? (
 						<img
 							src={image.url}
 							alt={imageDescription}
@@ -132,6 +136,15 @@ export default function Edit({ attributes, setAttributes }) {
 							ref={imageRef}
 							onLoad={handleImageLoad}
 						/>
+					) : (
+						<div className="imagehotspot__placeholder">
+							<span className="imagehotspot__placeholder-icon"></span>
+							<MediaUploadComponent
+								onSelect={onSelectImage}
+								onRemove={onRemoveImage}
+								value={image}
+							/>
+						</div>
 					)}
 
 					{image?.url &&

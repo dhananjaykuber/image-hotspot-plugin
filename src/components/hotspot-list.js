@@ -22,7 +22,7 @@ import {
 	HOTSPOT_TOOLTIP_TEXT_COLOR,
 } from "../utils/constants";
 
-export default function HotspotList({ hotspots, setAttributes }) {
+export default function HotspotList({ image, hotspots, setAttributes }) {
 	// Handle value change for each hotspot
 	const handleValueChange = (index, field, value) => {
 		const updatedHotspots = [...hotspots];
@@ -143,7 +143,11 @@ export default function HotspotList({ hotspots, setAttributes }) {
 			))}
 
 			<FlexItem>
-				<Button variant="primary" onClick={handleAddHotspot}>
+				<Button
+					variant="primary"
+					onClick={handleAddHotspot}
+					disabled={!image?.url}
+				>
 					{__("Add Hotspot", "image-hotspot")}
 				</Button>
 			</FlexItem>
