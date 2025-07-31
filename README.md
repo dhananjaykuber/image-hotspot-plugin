@@ -12,6 +12,20 @@ Create interactive image hotspots directly within the Gutenberg editor! This plu
 - ⚙️ Toggle animations and other options
 - ⚡ Seamless Gutenberg integration
 
+### Hotspot Settings
+
+- `Icon:` Enter encoded SVG markup. Example: url("data:image/svg+xml;utf8,<svg>...</svg>")
+- `Title:` The title displayed for the hotspot.
+- `Show Title:` Toggle to show or hide the title on the hotspot marker.
+- `Description:` Tooltip text that appears when hovering over the hotspot.
+- `Animation:` Enable or disable animation effects for the hotspot.
+- `Custom Color:` Enable to customize the hotspot’s colors:
+  - `Background Color:` The background color of the hotspot marker.
+  - `Title Color:` The color of the hotspot title.
+  - `Tooltip Color:` The background color of the tooltip.
+  - `Tooltip Text Color:` The text color inside the tooltip.
+- `Video URL:` Embed a YouTube video that will appear in the tooltip.
+
 ### Installation
 
 Download the plugin ZIP or clone the repo:
