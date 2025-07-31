@@ -23,6 +23,17 @@
   height: 100px;
   display: block;
 }
+.wp-block-hotspot-image-hotspot .imagehotspot__container {
+  position: absolute;
+}
+.wp-block-hotspot-image-hotspot .imagehotspot__hotspot {
+  position: relative;
+}
+.wp-block-hotspot-image-hotspot .imagehotspot__tooltip {
+  top: 40px;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
 
 .wp-image-color-palette {
   margin-bottom: 16px;

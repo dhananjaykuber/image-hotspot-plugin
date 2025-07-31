@@ -21,6 +21,20 @@
 				display: block;
 			}
 		}
+
+		&__container {
+			position: absolute;
+		}
+
+		&__hotspot {
+			position: relative;
+		}
+
+		&__tooltip {
+			top: 40px;
+			opacity: 0 !important;
+			visibility: hidden !important;
+		}
 	}
 }
 
